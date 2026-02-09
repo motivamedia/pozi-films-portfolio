@@ -67,7 +67,7 @@ const Header = () => {
           alt="Pozi Visual Art"
           className="h-16 md:h-20 w-auto invert"
         />
-        <div className="flex items-center gap-4">
+        <div id="socials" className="flex items-center gap-4">
           {socialLinks.map((link) => (
             <a
               key={link.label}
@@ -98,6 +98,23 @@ const Header = () => {
         </div>
       </div>
       <div className="h-px bg-border mt-6" />
+      <nav className="flex items-center gap-6 mt-4 overflow-x-auto">
+        {[
+          { label: "Who is Pozi?", href: "#hero" },
+          { label: "Portfolio", href: "#portfolio" },
+          { label: "Companys", href: "#companys" },
+          { label: "Social Medias", href: "#socials" },
+          { label: "Contact", href: "#contact" },
+        ].map((item) => (
+          <a
+            key={item.label}
+            href={item.href}
+            className="text-xs uppercase tracking-[0.15em] font-light text-muted-foreground hover:text-foreground transition-colors duration-300 whitespace-nowrap py-2"
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
     </motion.header>
   );
 };
