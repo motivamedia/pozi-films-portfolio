@@ -17,11 +17,11 @@ const Footer = () => {
           </p>
           <div className="space-y-2">
             <a
-              href="mailto:pozi@pozivisualart.com"
+              href="mailto:info@pozi.media"
               className="flex items-center gap-2 text-sm font-light text-foreground hover:text-muted-foreground transition-colors"
             >
               <Mail className="w-3.5 h-3.5" />
-              pozi@pozivisualart.com
+              info@pozi.media
             </a>
             <a
               href="tel:+4407810020163"
@@ -39,13 +39,13 @@ const Footer = () => {
           </p>
           <div className="space-y-2">
             <a
-              href="https://www.pozivisualart.com"
+              href="https://pozi.media"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-sm font-light text-foreground hover:text-muted-foreground transition-colors"
             >
               <Globe className="w-3.5 h-3.5" />
-              pozivisualart.com
+              pozi.media
             </a>
             <a
               href="https://vimeo.com/pozivisualart"

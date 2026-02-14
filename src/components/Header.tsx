@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import logo from "@/assets/logo.png";
-import { Mail, Phone } from "lucide-react";
+import { Mail, Phone, Home } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 const socialLinks = [
   {
@@ -40,20 +41,12 @@ const socialLinks = [
       </svg>
     ),
   },
-  {
-    label: "Website",
-    href: "https://www.pozivisualart.com",
-    icon: (
-      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10" />
-        <line x1="2" y1="12" x2="22" y2="12" />
-        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-      </svg>
-    ),
-  },
 ];
 
 const Header = () => {
+  const location = useLocation();
+  const isPhoto = location.pathname === "/photography";
+
   return (
     <motion.header
       initial={{ opacity: 0 }}
@@ -62,11 +55,13 @@ const Header = () => {
       className="mb-12 md:mb-16"
     >
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
-        <img
-          src={logo}
-          alt="Pozi Visual Art"
-          className="h-16 md:h-20 w-auto invert"
-        />
+        <Link to="/">
+          <img
+            src={logo}
+            alt="Pozi Visual Art"
+            className="h-32 md:h-40 w-auto invert -ml-3"
+          />
+        </Link>
         <div id="socials" className="flex items-center gap-4">
           {socialLinks.map((link) => (
             <a
@@ -81,8 +76,15 @@ const Header = () => {
             </a>
           ))}
           <span className="w-px h-4 bg-border mx-1" />
+          <Link
+            to="/"
+            aria-label="Home"
+            className="text-muted-foreground hover:text-foreground transition-colors duration-300"
+          >
+            <Home className="w-4 h-4" />
+          </Link>
           <a
-            href="mailto:pozi@pozivisualart.com"
+            href="mailto:info@pozi.media"
             aria-label="Email"
             className="text-muted-foreground hover:text-foreground transition-colors duration-300"
           >
@@ -97,24 +99,28 @@ const Header = () => {
           </a>
         </div>
       </div>
-      <div className="h-px bg-border mt-6" />
-      <nav className="flex items-center gap-6 mt-4 overflow-x-auto">
-        {[
-          { label: "Who is Pozi?", href: "#hero" },
-          { label: "Portfolio", href: "#portfolio" },
-          { label: "Companys", href: "#companys" },
-          { label: "Social Medias", href: "#socials" },
-          { label: "Contact", href: "#contact" },
-        ].map((item) => (
-          <a
-            key={item.label}
-            href={item.href}
-            className="text-xs uppercase tracking-[0.15em] font-light text-muted-foreground hover:text-foreground transition-colors duration-300 whitespace-nowrap py-2"
-          >
-            {item.label}
-          </a>
-        ))}
-      </nav>
+      <div className="flex items-center gap-3 mt-6">
+        <Link
+          to="/"
+          className={`px-5 py-2 text-xs uppercase tracking-[0.15em] font-light rounded-full border transition-all duration-300 ${
+            !isPhoto
+              ? "bg-foreground text-background border-foreground"
+              : "bg-transparent text-muted-foreground border-border hover:border-foreground hover:text-foreground"
+          }`}
+        >
+          Videography
+        </Link>
+        <Link
+          to="/photography"
+          className={`px-5 py-2 text-xs uppercase tracking-[0.15em] font-light rounded-full border transition-all duration-300 ${
+            isPhoto
+              ? "bg-foreground text-background border-foreground"
+              : "bg-transparent text-muted-foreground border-border hover:border-foreground hover:text-foreground"
+          }`}
+        >
+          Photography
+        </Link>
+      </div>
     </motion.header>
   );
 };

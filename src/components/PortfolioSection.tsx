@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useRef, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 
 interface VideoItem {
   id: string;
@@ -9,6 +9,7 @@ interface VideoItem {
 
 interface PortfolioCategoryData {
   title: string;
+  playlistUrl: string;
   videos: VideoItem[];
 }
 
@@ -16,6 +17,7 @@ interface PortfolioCategoryData {
 const portfolioData: PortfolioCategoryData[] = [
   {
     title: "Commercial",
+    playlistUrl: "https://www.youtube.com/@pozimedia",
     videos: [
       { id: "dQw4w9WgXcQ", title: "Turkcell Campaign" },
       { id: "dQw4w9WgXcQ", title: "Samsung Promo" },
@@ -31,21 +33,14 @@ const portfolioData: PortfolioCategoryData[] = [
   },
   {
     title: "Music Videos",
+    playlistUrl: "https://www.youtube.com/playlist?list=PLlWLRj4G9HmjjY1LbT3_ykSDSu1nFh5LR",
     videos: [
-      { id: "dQw4w9WgXcQ", title: "Music Video 1" },
-      { id: "dQw4w9WgXcQ", title: "Music Video 2" },
-      { id: "dQw4w9WgXcQ", title: "Music Video 3" },
-      { id: "dQw4w9WgXcQ", title: "Music Video 4" },
-      { id: "dQw4w9WgXcQ", title: "Music Video 5" },
-      { id: "dQw4w9WgXcQ", title: "Music Video 6" },
-      { id: "dQw4w9WgXcQ", title: "Music Video 7" },
-      { id: "dQw4w9WgXcQ", title: "Music Video 8" },
-      { id: "dQw4w9WgXcQ", title: "Music Video 9" },
-      { id: "dQw4w9WgXcQ", title: "Music Video 10" },
+      { id: "YGGTYsTMVq0", title: "De'wale | MAMA IJO FOR AFRICA | 4K" },
     ],
   },
   {
     title: "Fashion",
+    playlistUrl: "https://www.youtube.com/@pozimedia",
     videos: [
       { id: "dQw4w9WgXcQ", title: "London Fashion Week" },
       { id: "dQw4w9WgXcQ", title: "Fashion Film 2" },
@@ -61,6 +56,7 @@ const portfolioData: PortfolioCategoryData[] = [
   },
   {
     title: "Documentary",
+    playlistUrl: "https://www.youtube.com/@pozimedia",
     videos: [
       { id: "dQw4w9WgXcQ", title: "Amazon Documentary" },
       { id: "dQw4w9WgXcQ", title: "Sustainable Living" },
@@ -76,6 +72,7 @@ const portfolioData: PortfolioCategoryData[] = [
   },
   {
     title: "Multicam Events",
+    playlistUrl: "https://www.youtube.com/@pozimedia",
     videos: [
       { id: "dQw4w9WgXcQ", title: "Concert 1" },
       { id: "dQw4w9WgXcQ", title: "Live Event 2" },
@@ -91,6 +88,7 @@ const portfolioData: PortfolioCategoryData[] = [
   },
   {
     title: "Food & Travel",
+    playlistUrl: "https://www.youtube.com/@pozimedia",
     videos: [
       { id: "dQw4w9WgXcQ", title: "Gourmet London" },
       { id: "dQw4w9WgXcQ", title: "Travel Series 1" },
@@ -105,6 +103,53 @@ const portfolioData: PortfolioCategoryData[] = [
     ],
   },
 ];
+
+const VideoThumbnail = ({ video }: { video: VideoItem }) => {
+  const [playing, setPlaying] = useState(false);
+
+  if (playing) {
+    return (
+      <div className="flex-shrink-0 w-[260px] md:w-[320px] snap-start">
+        <div className="aspect-video bg-secondary rounded-sm overflow-hidden">
+          <iframe
+            src={`https://www.youtube.com/embed/${video.id}?autoplay=1`}
+            className="w-full h-full"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            title={video.title}
+          />
+        </div>
+        <p className="mt-2 text-xs font-light text-muted-foreground truncate">
+          {video.title}
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex-shrink-0 w-[260px] md:w-[320px] snap-start">
+      <div
+        className="aspect-video bg-secondary rounded-sm overflow-hidden relative cursor-pointer group"
+        onClick={() => setPlaying(true)}
+      >
+        <img
+          src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`}
+          alt={video.title}
+          className="w-full h-full object-cover"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors duration-300">
+          <div className="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+            <Play className="w-4 h-4 text-black fill-black ml-0.5" />
+          </div>
+        </div>
+      </div>
+      <p className="mt-2 text-xs font-light text-muted-foreground truncate">
+        {video.title}
+      </p>
+    </div>
+  );
+};
 
 const VideoCarousel = ({ category }: { category: PortfolioCategoryData }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -131,9 +176,19 @@ const VideoCarousel = ({ category }: { category: PortfolioCategoryData }) => {
   return (
     <div className="mb-12 md:mb-16">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg md:text-xl font-light tracking-wide uppercase text-foreground">
-          {category.title}
-        </h3>
+        <div className="flex items-center gap-3">
+          <h3 className="text-lg md:text-xl font-light tracking-wide uppercase text-foreground">
+            {category.title}
+          </h3>
+          <a
+            href={category.playlistUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[10px] uppercase tracking-[0.15em] font-light text-muted-foreground hover:text-foreground transition-colors duration-300"
+          >
+            View All →
+          </a>
+        </div>
         <div className="flex items-center gap-2">
           <button
             onClick={() => scroll("left")}
@@ -161,24 +216,7 @@ const VideoCarousel = ({ category }: { category: PortfolioCategoryData }) => {
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         {category.videos.map((video, i) => (
-          <div
-            key={i}
-            className="flex-shrink-0 w-[260px] md:w-[320px] snap-start"
-          >
-            <div className="aspect-video bg-secondary rounded-sm overflow-hidden">
-              <iframe
-                src={`https://www.youtube.com/embed/${video.id}`}
-                className="w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                title={video.title}
-                loading="lazy"
-              />
-            </div>
-            <p className="mt-2 text-xs font-light text-muted-foreground truncate">
-              {video.title}
-            </p>
-          </div>
+          <VideoThumbnail key={i} video={video} />
         ))}
       </div>
     </div>
