@@ -2,9 +2,20 @@ import { motion } from "framer-motion";
 import { useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 
+import thumbBusra from "@/assets/thumbnails/Busra_Aydogdu_Kiyamadim.jpg";
+import thumbEmre from "@/assets/thumbnails/Emre_Manzel_Bitmez_Keder.jpg";
+import thumbBurcu from "@/assets/thumbnails/Burcu_Ari_Genco_Ari_Kucugum.jpg";
+import thumbCharles from "@/assets/thumbnails/Charles_Pam_Rolling_Again.jpg";
+import thumbCigdem from "@/assets/thumbnails/Cigdem_Aslan_Music_Video.jpg";
+import thumbDewale from "@/assets/thumbnails/Dewale_Music_Video.jpg";
+import thumbMehmet from "@/assets/thumbnails/Mehmet_Uslu_Music_Video.jpg";
+import thumbAnlasana from "@/assets/thumbnails/Anlasana.jpg";
+import thumbMamaIjo from "@/assets/thumbnails/Dewale_Mama_Ijo.jpg";
+
 interface VideoItem {
   id: string;
   title: string;
+  thumbnail?: string;
 }
 
 interface PortfolioCategoryData {
@@ -35,15 +46,15 @@ const portfolioData: PortfolioCategoryData[] = [
     title: "Music Videos",
     playlistUrl: "https://www.youtube.com/playlist?list=PLlWLRj4G9HmjjY1LbT3_ykSDSu1nFh5LR",
     videos: [
-      { id: "BMYk9Q0Wrqs", title: "Büsra Aydogdu | Kıyamadım | 4K" },
-      { id: "hmS4RZ9hnwA", title: "Emre Manzel | Bitmez Keder | 4K" },
-      { id: "RH7hK_e0RCo", title: "Burcu Arı & Genco Arı | Küçüğüm | 4K" },
-      { id: "9zE50ZFEDIc", title: "Charles Pam | Rolling Again | 4K" },
-      { id: "utBCXAEIqUo", title: "Cigdem Aslan | Music Video 4K | 2022" },
-      { id: "zN3mrdfg3OM", title: "Dewale | Music Video | 4K" },
-      { id: "diJZgOuRybY", title: "MEHMET USLU | Music Video | 2023" },
-      { id: "ZjbapVRWjbU", title: "Music Video | ANLASANA" },
-      { id: "YGGTYsTMVq0", title: "De'wale | MAMA IJO FOR AFRICA | 4K" },
+      { id: "7XalBuANHAM", title: "Büşra Aydoğdu | Kıyamadım | 4K", thumbnail: thumbBusra },
+      { id: "hmS4RZ9hnwA", title: "Emre Manzel | Bitmez Keder | 4K", thumbnail: thumbEmre },
+      { id: "RH7hK_e0RCo", title: "Burcu Arı & Genco Arı | Küçüğüm | 4K", thumbnail: thumbBurcu },
+      { id: "9zE50ZFEDIc", title: "Charles Pam | Rolling Again | 4K", thumbnail: thumbCharles },
+      { id: "utBCXAEIqUo", title: "Cigdem Aslan | Music Video 4K | 2022", thumbnail: thumbCigdem },
+      { id: "zN3mrdfg3OM", title: "Dewale | Music Video | 4K", thumbnail: thumbDewale },
+      { id: "diJZgOuRybY", title: "MEHMET USLU | Music Video | 2023", thumbnail: thumbMehmet },
+      { id: "ZjbapVRWjbU", title: "Music Video | ANLASANA", thumbnail: thumbAnlasana },
+      { id: "b-isOA0DCdw", title: "De'wale | Mama Ijo For Africa", thumbnail: thumbMamaIjo },
     ],
   },
   {
@@ -141,7 +152,7 @@ const VideoThumbnail = ({ video }: { video: VideoItem }) => {
         onClick={() => setPlaying(true)}
       >
         <img
-          src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`}
+          src={video.thumbnail || `https://img.youtube.com/vi/${video.id}/hqdefault.jpg`}
           alt={video.title}
           className="w-full h-full object-cover"
           loading="lazy"
