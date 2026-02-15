@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { clientBrands } from "@/data/clients";
+import { useState } from "react";
 
 const collaborators = [
   { name: "Çağla Şıkel", role: "Model & TV Presenter", instagram: "caglasikel", followers: "4.7M" },
@@ -12,6 +13,86 @@ const collaborators = [
   { name: "Esra Oflaz", role: "Author & Businesswoman", instagram: "esraoflazguvenkaya", followers: "255K" },
   { name: "Arda Sayıner", role: "PR & Communications", instagram: "ardasayiner", followers: "28K" },
 ];
+
+const IgProfileCard = ({
+  person,
+  index,
+}: {
+  person: (typeof collaborators)[0];
+  index: number;
+}) => {
+  const [imgError, setImgError] = useState(false);
+  const initials = person.name
+    .split(" ")
+    .map((w) => w[0])
+    .join("")
+    .slice(0, 2);
+
+  return (
+    <motion.a
+      href={`https://www.instagram.com/${person.instagram}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3, delay: 0.3 + index * 0.05 }}
+      className="block rounded-lg border border-border/60 hover:border-border overflow-hidden transition-all duration-300 group"
+    >
+      {/* IG-style header bar */}
+      <div className="h-1 bg-gradient-to-r from-[#f09433] via-[#dc2743] to-[#bc1888]" />
+
+      <div className="px-4 py-4">
+        <div className="flex items-center gap-3">
+          {/* Avatar */}
+          <div className="relative flex-shrink-0">
+            <div className="w-12 h-12 rounded-full p-[2px] bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888]">
+              <div className="w-full h-full rounded-full bg-background flex items-center justify-center overflow-hidden">
+                {!imgError ? (
+                  <img
+                    src={`https://unavatar.io/instagram/${person.instagram}`}
+                    alt={person.name}
+                    className="w-full h-full object-cover"
+                    onError={() => setImgError(true)}
+                  />
+                ) : (
+                  <span className="text-xs font-light text-muted-foreground">
+                    {initials}
+                  </span>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Info */}
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-medium text-foreground truncate">
+              {person.name}
+            </p>
+            <p className="text-xs text-muted-foreground/60 truncate">
+              @{person.instagram}
+            </p>
+          </div>
+        </div>
+
+        {/* Stats row */}
+        <div className="flex items-center gap-6 mt-3 pt-3 border-t border-border/40">
+          <div>
+            <span className="text-sm font-medium text-foreground">
+              {person.followers}
+            </span>
+            <span className="text-[10px] text-muted-foreground/50 ml-1">
+              followers
+            </span>
+          </div>
+          <div className="flex-1" />
+          <span className="text-[10px] uppercase tracking-wider text-muted-foreground/40 group-hover:text-muted-foreground transition-colors">
+            {person.role}
+          </span>
+        </div>
+      </div>
+    </motion.a>
+  );
+};
 
 const Clients = () => {
   return (
@@ -67,62 +148,10 @@ const Clients = () => {
               Notable Collaborators
             </h2>
 
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-border">
-                    <th className="text-left text-[10px] uppercase tracking-[0.15em] text-muted-foreground/60 font-light pb-3 pr-4">
-                      Name
-                    </th>
-                    <th className="text-left text-[10px] uppercase tracking-[0.15em] text-muted-foreground/60 font-light pb-3 pr-4 hidden sm:table-cell">
-                      Role
-                    </th>
-                    <th className="text-left text-[10px] uppercase tracking-[0.15em] text-muted-foreground/60 font-light pb-3 pr-4">
-                      Instagram
-                    </th>
-                    <th className="text-right text-[10px] uppercase tracking-[0.15em] text-muted-foreground/60 font-light pb-3">
-                      Followers
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {collaborators.map((person, i) => (
-                    <motion.tr
-                      key={person.name}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.3, delay: 0.3 + i * 0.05 }}
-                      className="border-b border-border/50 hover:bg-secondary/30 transition-colors duration-200"
-                    >
-                      <td className="py-4 pr-4">
-                        <span className="text-sm font-light text-foreground">
-                          {person.name}
-                        </span>
-                      </td>
-                      <td className="py-4 pr-4 hidden sm:table-cell">
-                        <span className="text-sm font-light text-muted-foreground">
-                          {person.role}
-                        </span>
-                      </td>
-                      <td className="py-4 pr-4">
-                        <a
-                          href={`https://www.instagram.com/${person.instagram}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-sm font-light text-muted-foreground hover:text-foreground transition-colors duration-200"
-                        >
-                          @{person.instagram}
-                        </a>
-                      </td>
-                      <td className="py-4 text-right">
-                        <span className="text-sm font-light text-foreground">
-                          {person.followers}
-                        </span>
-                      </td>
-                    </motion.tr>
-                  ))}
-                </tbody>
-              </table>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              {collaborators.map((person, i) => (
+                <IgProfileCard key={person.instagram} person={person} index={i} />
+              ))}
             </div>
           </div>
         </motion.section>
