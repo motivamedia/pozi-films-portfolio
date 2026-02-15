@@ -2,20 +2,30 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { clientBrands } from "@/data/clients";
-import { useState } from "react";
+import profileCagla from "@/assets/profiles/caglasikel.jpg";
+import profileHCK from "@/assets/profiles/hasancankayahck.jpg";
+import profileEnis from "@/assets/profiles/enisarikan.jpg";
+import profileEkaterina from "@/assets/profiles/ekaterinashelehova.jpg";
+import profileIsil from "@/assets/profiles/isilrecber.jpg";
+import profileTulin from "@/assets/profiles/tulinsahinofficial.jpg";
+import profileSera from "@/assets/profiles/tokdemirsera.jpg";
+import profileAyhan from "@/assets/profiles/ayhansicimoglu.jpg";
+import profileGenco from "@/assets/profiles/gencoari.jpg";
+import profileEsra from "@/assets/profiles/esraoflazguvenkaya.jpg";
+import profileArda from "@/assets/profiles/ardasayiner.jpg";
 
 const collaborators = [
-  { name: "Çağla Şıkel", role: "Model & TV Presenter", instagram: "caglasikel", followers: "4.7M" },
-  { name: "Hasan Can Kaya", role: "Comedian & Producer", instagram: "hasancankayahck", followers: "4M" },
-  { name: "Enis Arıkan", role: "Actor & Comedian", instagram: "enisarikan", followers: "3M" },
-  { name: "Ekaterina Shelehova", role: "Singer & Composer", instagram: "ekaterinashelehova", followers: "2M" },
-  { name: "Işıl Reçber", role: "Public Figure", instagram: "isilrecber", followers: "1M" },
-  { name: "Tülin Şahin", role: "Supermodel", instagram: "tulinsahinofficial", followers: "916K" },
-  { name: "Sera Tokdemir", role: "Actress & Model", instagram: "tokdemirsera", followers: "860K" },
-  { name: "Ayhan Sicimoğlu", role: "TV Presenter & Musician", instagram: "ayhansicimoglu", followers: "778K" },
-  { name: "Genco Arı", role: "Musician & Composer", instagram: "gencoari", followers: "289K" },
-  { name: "Esra Oflaz", role: "Author & Businesswoman", instagram: "esraoflazguvenkaya", followers: "255K" },
-  { name: "Arda Sayıner", role: "PR & Communications", instagram: "ardasayiner", followers: "28K" },
+  { name: "Çağla Şıkel", role: "Model & TV Presenter", instagram: "caglasikel", followers: "4.7M", photo: profileCagla },
+  { name: "Hasan Can Kaya", role: "Comedian & Producer", instagram: "hasancankayahck", followers: "4M", photo: profileHCK },
+  { name: "Enis Arıkan", role: "Actor & Comedian", instagram: "enisarikan", followers: "3M", photo: profileEnis },
+  { name: "Ekaterina Shelehova", role: "Singer & Composer", instagram: "ekaterinashelehova", followers: "2M", photo: profileEkaterina },
+  { name: "Işıl Reçber", role: "Public Figure", instagram: "isilrecber", followers: "1M", photo: profileIsil },
+  { name: "Tülin Şahin", role: "Supermodel", instagram: "tulinsahinofficial", followers: "916K", photo: profileTulin },
+  { name: "Sera Tokdemir", role: "Actress & Model", instagram: "tokdemirsera", followers: "860K", photo: profileSera },
+  { name: "Ayhan Sicimoğlu", role: "TV Presenter & Musician", instagram: "ayhansicimoglu", followers: "778K", photo: profileAyhan },
+  { name: "Genco Arı", role: "Musician & Composer", instagram: "gencoari", followers: "289K", photo: profileGenco },
+  { name: "Esra Oflaz", role: "Author & Businesswoman", instagram: "esraoflazguvenkaya", followers: "255K", photo: profileEsra },
+  { name: "Arda Sayıner", role: "PR & Communications", instagram: "ardasayiner", followers: "28K", photo: profileArda },
 ];
 
 const IgProfileCard = ({
@@ -25,13 +35,6 @@ const IgProfileCard = ({
   person: (typeof collaborators)[0];
   index: number;
 }) => {
-  const [imgError, setImgError] = useState(false);
-  const initials = person.name
-    .split(" ")
-    .map((w) => w[0])
-    .join("")
-    .slice(0, 2);
-
   return (
     <motion.a
       href={`https://www.instagram.com/${person.instagram}`}
@@ -51,18 +54,11 @@ const IgProfileCard = ({
           <div className="relative flex-shrink-0">
             <div className="w-12 h-12 rounded-full p-[2px] bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888]">
               <div className="w-full h-full rounded-full bg-background flex items-center justify-center overflow-hidden">
-                {!imgError ? (
-                  <img
-                    src={`https://unavatar.io/instagram/${person.instagram}`}
-                    alt={person.name}
-                    className="w-full h-full object-cover"
-                    onError={() => setImgError(true)}
-                  />
-                ) : (
-                  <span className="text-xs font-light text-muted-foreground">
-                    {initials}
-                  </span>
-                )}
+                <img
+                  src={person.photo}
+                  alt={person.name}
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           </div>

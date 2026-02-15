@@ -41,9 +41,9 @@ export interface ClientBrand {
 }
 
 export const clientBrands: ClientBrand[] = [
-  { name: "JW Marriott", logo: logoJWMarriott },
-  { name: "Kaya GNH London", logo: logoKayaGNH },
-  { name: "Lansdowne Club", logo: logoLansdowne },
+  { name: "JW Marriott", logo: logoJWMarriott, size: "h-10" },
+  { name: "Kaya GNH London", logo: logoKayaGNH, size: "h-10" },
+  { name: "Lansdowne Club", logo: logoLansdowne, size: "h-10" },
   { name: "Turkish Airlines", logo: logoTurkishAirlines },
   { name: "Salesforce", logo: logoSalesforce },
   { name: "Meta", logo: logoMeta },
