@@ -8,6 +8,7 @@ const collaborators = [
   { name: "Çağla Şıkel", role: "Model & TV Presenter", instagram: "caglasikel", followers: "4.7M" },
   { name: "Hasan Can Kaya", role: "Comedian & Producer", instagram: "hasancankayahck", followers: "4M" },
   { name: "Enis Arıkan", role: "Actor & Comedian", instagram: "enisarikan", followers: "3M" },
+  { name: "Ekaterina Shelehova", role: "Singer & Composer", instagram: "ekaterinashelehova", followers: "2M" },
   { name: "Işıl Reçber", role: "Public Figure", instagram: "isilrecber", followers: "1M" },
   { name: "Tülin Şahin", role: "Supermodel", instagram: "tulinsahinofficial", followers: "916K" },
   { name: "Sera Tokdemir", role: "Actress & Model", instagram: "tokdemirsera", followers: "860K" },
