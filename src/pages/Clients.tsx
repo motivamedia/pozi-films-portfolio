@@ -4,8 +4,11 @@ import { motion } from "framer-motion";
 import { clientBrands } from "@/data/clients";
 
 const collaborators = [
-  { name: "Enis Arıkan", role: "Actor & Comedian", instagram: "enisarikan", followers: "3M" },
   { name: "Çağla Şıkel", role: "Model & TV Presenter", instagram: "caglasikel", followers: "4.7M" },
+  { name: "Hasan Can Kaya", role: "Comedian & Producer", instagram: "hasancankayahck", followers: "4M" },
+  { name: "Enis Arıkan", role: "Actor & Comedian", instagram: "enisarikan", followers: "3M" },
+  { name: "Işıl Reçber", role: "Public Figure", instagram: "isilrecber", followers: "1M" },
+  { name: "Genco Arı", role: "Musician & Composer", instagram: "gencoari", followers: "289K" },
   { name: "Esra Oflaz", role: "Author & Businesswoman", instagram: "esraoflazguvenkaya", followers: "255K" },
   { name: "Arda Sayıner", role: "PR & Communications", instagram: "ardasayiner", followers: "28K" },
 ];
