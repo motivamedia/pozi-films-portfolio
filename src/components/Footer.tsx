@@ -1,77 +1,113 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, Globe, ExternalLink } from "lucide-react";
+import { Mail, Phone, Send } from "lucide-react";
+import { useState } from "react";
 
 const Footer = () => {
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const subject = encodeURIComponent(`Contact from ${formData.name}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
+    );
+    window.location.href = `mailto:info@pozi.media?subject=${subject}&body=${body}`;
+    setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 3000);
+  };
+
   return (
     <motion.footer
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="border-t border-border mt-20 md:mt-32 pt-8 pb-12"
+      className="border-t border-border mt-20 md:mt-32 pt-10 pb-12"
     >
-      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
-        <div className="space-y-3">
-          <p className="text-xs uppercase tracking-widest text-muted-foreground font-light">
-            Contact
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+        {/* Contact Form */}
+        <div>
+          <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-light mb-6">
+            Get in Touch
           </p>
-          <div className="space-y-2">
-            <a
-              href="mailto:info@pozi.media"
-              className="flex items-center gap-2 text-sm font-light text-foreground hover:text-muted-foreground transition-colors"
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <input
+                type="text"
+                placeholder="Name"
+                required
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                className="w-full bg-transparent border border-border rounded-sm px-4 py-3 text-sm font-light text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-foreground transition-colors duration-300"
+              />
+              <input
+                type="email"
+                placeholder="Email"
+                required
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className="w-full bg-transparent border border-border rounded-sm px-4 py-3 text-sm font-light text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-foreground transition-colors duration-300"
+              />
+            </div>
+            <textarea
+              placeholder="Your message..."
+              required
+              rows={4}
+              value={formData.message}
+              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+              className="w-full bg-transparent border border-border rounded-sm px-4 py-3 text-sm font-light text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-foreground transition-colors duration-300 resize-none"
+            />
+            <button
+              type="submit"
+              className="inline-flex items-center gap-2 px-6 py-2.5 text-xs uppercase tracking-[0.15em] font-light rounded-full border border-foreground bg-foreground text-background hover:bg-transparent hover:text-foreground transition-all duration-300"
             >
-              <Mail className="w-3.5 h-3.5" />
-              info@pozi.media
-            </a>
-            <a
-              href="tel:+4407810020163"
-              className="flex items-center gap-2 text-sm font-light text-foreground hover:text-muted-foreground transition-colors"
-            >
-              <Phone className="w-3.5 h-3.5" />
-              +44 078 100 201 63
-            </a>
-          </div>
+              {submitted ? "Opening mail..." : "Send Message"}
+              <Send className="w-3 h-3" />
+            </button>
+          </form>
         </div>
 
-        <div className="space-y-3">
-          <p className="text-xs uppercase tracking-widest text-muted-foreground font-light">
-            Links
-          </p>
-          <div className="space-y-2">
-            <a
-              href="https://pozi.media"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm font-light text-foreground hover:text-muted-foreground transition-colors"
-            >
-              <Globe className="w-3.5 h-3.5" />
-              pozi.media
-            </a>
-            <a
-              href="https://vimeo.com/pozivisualart"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm font-light text-foreground hover:text-muted-foreground transition-colors"
-            >
-              <ExternalLink className="w-3.5 h-3.5" />
-              Vimeo Portfolio
-            </a>
-          </div>
-        </div>
+        {/* Contact Info */}
+        <div className="flex flex-col justify-between">
+          <div className="space-y-6">
+            <div className="space-y-3">
+              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-light">
+                Contact
+              </p>
+              <div className="space-y-2">
+                <a
+                  href="mailto:info@pozi.media"
+                  className="flex items-center gap-2 text-sm font-light text-foreground hover:text-muted-foreground transition-colors"
+                >
+                  <Mail className="w-3.5 h-3.5" />
+                  info@pozi.media
+                </a>
+                <a
+                  href="tel:+4407810020163"
+                  className="flex items-center gap-2 text-sm font-light text-foreground hover:text-muted-foreground transition-colors"
+                >
+                  <Phone className="w-3.5 h-3.5" />
+                  +44 078 100 201 63
+                </a>
+              </div>
+            </div>
 
-        <div className="space-y-3">
-          <p className="text-xs uppercase tracking-widest text-muted-foreground font-light">
-            Based in
-          </p>
-          <p className="text-sm font-light text-foreground">
-            London, UK
-          </p>
+            <div className="space-y-3">
+              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-light">
+                Based in
+              </p>
+              <p className="text-sm font-light text-foreground">
+                London, UK
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
       <div className="mt-12 pt-6 border-t border-border">
         <p className="text-xs text-muted-foreground font-light">
-          © {new Date().getFullYear()} Pozi Poyraz Saroglu. All rights reserved.
+          &copy; {new Date().getFullYear()} Pozi Poyraz Saroglu. All rights reserved.
         </p>
       </div>
     </motion.footer>
