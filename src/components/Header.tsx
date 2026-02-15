@@ -38,6 +38,8 @@ const Header = () => {
   const location = useLocation();
   const isHome = location.pathname === "/";
   const isPhoto = location.pathname === "/photography";
+  const isClients = location.pathname === "/clients";
+  const isVideography = !isPhoto && !isClients;
 
   return (
     <motion.header
@@ -85,7 +87,7 @@ const Header = () => {
         <Link
           to="/"
           className={`px-5 py-2 text-xs uppercase tracking-[0.15em] font-light rounded-full border transition-all duration-300 ${
-            !isPhoto
+            isVideography
               ? "bg-foreground text-background border-foreground"
               : "bg-transparent text-muted-foreground border-border hover:border-foreground hover:text-foreground"
           }`}
@@ -101,6 +103,16 @@ const Header = () => {
           }`}
         >
           Photography
+        </Link>
+        <Link
+          to="/clients"
+          className={`px-5 py-2 text-xs uppercase tracking-[0.15em] font-light rounded-full border transition-all duration-300 ${
+            isClients
+              ? "bg-foreground text-background border-foreground"
+              : "bg-transparent text-muted-foreground border-border hover:border-foreground hover:text-foreground"
+          }`}
+        >
+          Clients
         </Link>
       </div>
     </motion.header>
