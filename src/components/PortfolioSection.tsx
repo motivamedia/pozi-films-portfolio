@@ -36,9 +36,14 @@ const portfolioData: PortfolioCategoryData[] = [
     playlistUrl: "https://www.youtube.com/playlist?list=PLlWLRj4G9HmjjY1LbT3_ykSDSu1nFh5LR",
     videos: [
       { id: "BMYk9Q0Wrqs", title: "Büsra Aydogdu | Kıyamadım | 4K" },
-      { id: "YGGTYsTMVq0", title: "De'wale | MAMA IJO FOR AFRICA | 4K" },
+      { id: "hmS4RZ9hnwA", title: "Emre Manzel | Bitmez Keder | 4K" },
+      { id: "RH7hK_e0RCo", title: "Burcu Arı & Genco Arı | Küçüğüm | 4K" },
+      { id: "9zE50ZFEDIc", title: "Charles Pam | Rolling Again | 4K" },
+      { id: "utBCXAEIqUo", title: "Cigdem Aslan | Music Video 4K | 2022" },
       { id: "zN3mrdfg3OM", title: "Dewale | Music Video | 4K" },
       { id: "diJZgOuRybY", title: "MEHMET USLU | Music Video | 2023" },
+      { id: "ZjbapVRWjbU", title: "Music Video | ANLASANA" },
+      { id: "YGGTYsTMVq0", title: "De'wale | MAMA IJO FOR AFRICA | 4K" },
     ],
   },
   {
