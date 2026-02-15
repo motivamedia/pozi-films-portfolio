@@ -1,3 +1,7 @@
+import logoJWMarriott from "@/assets/clients/JW_Marriott.png";
+import logoKayaGNH from "@/assets/clients/Kaya_GNH.png";
+import logoLansdowne from "@/assets/clients/Lansdowne_Club.png";
+import logoTurkishAirlines from "@/assets/clients/Turkish_Airlines.png";
 import logoSalesforce from "@/assets/clients/Salesforce.png";
 import logoMeta from "@/assets/clients/Meta.png";
 import logoSamsung from "@/assets/clients/Samsung_new.jpg";
@@ -37,6 +41,10 @@ export interface ClientBrand {
 }
 
 export const clientBrands: ClientBrand[] = [
+  { name: "JW Marriott", logo: logoJWMarriott },
+  { name: "Kaya GNH London", logo: logoKayaGNH },
+  { name: "Lansdowne Club", logo: logoLansdowne },
+  { name: "Turkish Airlines", logo: logoTurkishAirlines },
   { name: "Salesforce", logo: logoSalesforce },
   { name: "Meta", logo: logoMeta },
   { name: "Samsung", logo: logoSamsung },
