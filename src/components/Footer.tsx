@@ -1,20 +1,39 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, Send } from "lucide-react";
+import { Mail, Phone, Send, CheckCircle } from "lucide-react";
 import { useState } from "react";
+
+const WEB3FORMS_KEY = "57729a27-3e0a-479c-b251-66c8f9295a59";
 
 const Footer = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Contact from ${formData.name}`);
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
-    );
-    window.location.href = `mailto:info@pozi.media?subject=${subject}&body=${body}`;
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    setStatus("sending");
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `New message from ${formData.name} — pozi.media`,
+          from_name: formData.name,
+          ...formData,
+        }),
+      });
+      if (res.ok) {
+        setStatus("sent");
+        setFormData({ name: "", email: "", message: "" });
+        setTimeout(() => setStatus("idle"), 4000);
+      } else {
+        setStatus("error");
+        setTimeout(() => setStatus("idle"), 3000);
+      }
+    } catch {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 3000);
+    }
   };
 
   return (
@@ -60,10 +79,21 @@ const Footer = () => {
             />
             <button
               type="submit"
-              className="inline-flex items-center gap-2 px-6 py-2.5 text-xs uppercase tracking-[0.15em] font-light rounded-full border border-foreground bg-foreground text-background hover:bg-transparent hover:text-foreground transition-all duration-300"
+              disabled={status === "sending" || status === "sent"}
+              className="inline-flex items-center gap-2 px-6 py-2.5 text-xs uppercase tracking-[0.15em] font-light rounded-full border border-foreground bg-foreground text-background hover:bg-transparent hover:text-foreground disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-300"
             >
-              {submitted ? "Opening mail..." : "Send Message"}
-              <Send className="w-3 h-3" />
+              {status === "sending" && "Sending..."}
+              {status === "sent" && (
+                <>
+                  Sent <CheckCircle className="w-3 h-3" />
+                </>
+              )}
+              {status === "error" && "Failed — try again"}
+              {status === "idle" && (
+                <>
+                  Send Message <Send className="w-3 h-3" />
+                </>
+              )}
             </button>
           </form>
         </div>
