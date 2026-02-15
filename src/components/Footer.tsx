@@ -5,7 +5,7 @@ import { useState } from "react";
 const WEB3FORMS_KEY = "57729a27-3e0a-479c-b251-66c8f9295a59";
 
 const Footer = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -24,7 +24,7 @@ const Footer = () => {
       });
       if (res.ok) {
         setStatus("sent");
-        setFormData({ name: "", email: "", message: "" });
+        setFormData({ name: "", email: "", phone: "", message: "" });
         setTimeout(() => setStatus("idle"), 4000);
       } else {
         setStatus("error");
@@ -51,7 +51,7 @@ const Footer = () => {
             Get in Touch
           </p>
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <input
                 type="text"
                 placeholder="Name"
@@ -66,6 +66,13 @@ const Footer = () => {
                 required
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className="w-full bg-transparent border border-border rounded-sm px-4 py-3 text-sm font-light text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-foreground transition-colors duration-300"
+              />
+              <input
+                type="tel"
+                placeholder="Phone (optional)"
+                value={formData.phone}
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                 className="w-full bg-transparent border border-border rounded-sm px-4 py-3 text-sm font-light text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-foreground transition-colors duration-300"
               />
             </div>
