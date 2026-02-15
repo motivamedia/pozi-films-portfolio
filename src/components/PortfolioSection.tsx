@@ -2,15 +2,25 @@ import { motion } from "framer-motion";
 import { useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 
+import thumbEkaterina from "@/assets/thumbnails/Ekaterina_Shelehova_Dancing.jpg";
+import thumbMamaIjo from "@/assets/thumbnails/Dewale_Mama_Ijo.jpg";
+import thumbCharles from "@/assets/thumbnails/Charles_Pam_Rolling_Again.jpg";
+import thumbElvanLess from "@/assets/thumbnails/Elvan_Kizilay_Less_Is_More.jpg";
+import thumbDewale from "@/assets/thumbnails/Dewale_Music_Video.jpg";
+import thumbElvanReq from "@/assets/thumbnails/Elvan_Kizilay_Requiem.jpg";
+import thumbYak from "@/assets/thumbnails/Muharrem_Ozturk_Yak.jpg";
+import thumbNefessiz from "@/assets/thumbnails/Umut_Baysal_Nefessiz.jpg";
+import thumbAskBulur from "@/assets/thumbnails/Umut_Baysal_Ask_Bulur.jpg";
+import thumbUnutuverdim from "@/assets/thumbnails/Muharrem_Ozturk_Unutuverdim.jpg";
+import thumbDidor from "@/assets/thumbnails/Didor.jpg";
+import thumbSelvi from "@/assets/thumbnails/Selvi_Yolculuk.jpg";
+import thumbGuvDoor from "@/assets/thumbnails/The_Guv_Door.jpg";
 import thumbBusra from "@/assets/thumbnails/Busra_Aydogdu_Kiyamadim.jpg";
 import thumbEmre from "@/assets/thumbnails/Emre_Manzel_Bitmez_Keder.jpg";
 import thumbBurcu from "@/assets/thumbnails/Burcu_Ari_Genco_Ari_Kucugum.jpg";
-import thumbCharles from "@/assets/thumbnails/Charles_Pam_Rolling_Again.jpg";
 import thumbCigdem from "@/assets/thumbnails/Cigdem_Aslan_Music_Video.jpg";
-import thumbDewale from "@/assets/thumbnails/Dewale_Music_Video.jpg";
 import thumbMehmet from "@/assets/thumbnails/Mehmet_Uslu_Music_Video.jpg";
 import thumbAnlasana from "@/assets/thumbnails/Anlasana.jpg";
-import thumbMamaIjo from "@/assets/thumbnails/Dewale_Mama_Ijo.jpg";
 
 interface VideoItem {
   id: string;
@@ -24,101 +34,52 @@ interface PortfolioCategoryData {
   videos: VideoItem[];
 }
 
-// Placeholder video IDs — replace with real ones from your YouTube playlists
 const portfolioData: PortfolioCategoryData[] = [
-  {
-    title: "Commercial",
-    playlistUrl: "https://www.youtube.com/@pozimedia",
-    videos: [
-      { id: "dQw4w9WgXcQ", title: "Turkcell Campaign" },
-      { id: "dQw4w9WgXcQ", title: "Samsung Promo" },
-      { id: "dQw4w9WgXcQ", title: "Salesforce Brand Film" },
-      { id: "dQw4w9WgXcQ", title: "Meta Campaign" },
-      { id: "dQw4w9WgXcQ", title: "Karaca Commercial" },
-      { id: "dQw4w9WgXcQ", title: "Nutraxin Ad" },
-      { id: "dQw4w9WgXcQ", title: "Bioxin Spot" },
-      { id: "dQw4w9WgXcQ", title: "Jeton Wallet" },
-      { id: "dQw4w9WgXcQ", title: "Cliniqua" },
-      { id: "dQw4w9WgXcQ", title: "GNC Campaign" },
-    ],
-  },
   {
     title: "Music Videos",
     playlistUrl: "https://www.youtube.com/playlist?list=PLlWLRj4G9HmjjY1LbT3_ykSDSu1nFh5LR",
     videos: [
-      { id: "7XalBuANHAM", title: "Büşra Aydoğdu | Kıyamadım | 4K", thumbnail: thumbBusra },
-      { id: "hmS4RZ9hnwA", title: "Emre Manzel | Bitmez Keder | 4K", thumbnail: thumbEmre },
-      { id: "RH7hK_e0RCo", title: "Burcu Arı & Genco Arı | Küçüğüm | 4K", thumbnail: thumbBurcu },
-      { id: "9zE50ZFEDIc", title: "Charles Pam | Rolling Again | 4K", thumbnail: thumbCharles },
-      { id: "utBCXAEIqUo", title: "Cigdem Aslan | Music Video 4K | 2022", thumbnail: thumbCigdem },
-      { id: "zN3mrdfg3OM", title: "Dewale | Music Video | 4K", thumbnail: thumbDewale },
-      { id: "diJZgOuRybY", title: "MEHMET USLU | Music Video | 2023", thumbnail: thumbMehmet },
-      { id: "ZjbapVRWjbU", title: "Music Video | ANLASANA", thumbnail: thumbAnlasana },
-      { id: "b-isOA0DCdw", title: "De'wale | Mama Ijo For Africa", thumbnail: thumbMamaIjo },
+      { id: "O92pqaPfxWs", title: "Ekaterina Shelehova & The Guv — Dancing with Your Ghost", thumbnail: thumbEkaterina },
+      { id: "b-isOA0DCdw", title: "De'wale — Mama Ijo For Africa", thumbnail: thumbMamaIjo },
+      { id: "9zE50ZFEDIc", title: "Charles Pam — Rolling Again | 4K", thumbnail: thumbCharles },
+      { id: "3qamHKovAPg", title: "Elvan Kızılay — Less Is More", thumbnail: thumbElvanLess },
+      { id: "zN3mrdfg3OM", title: "Dewale — Music Video | 4K", thumbnail: thumbDewale },
+      { id: "jAU_v-Mp4qQ", title: "Elvan Kızılay — Requiem for Istanbul", thumbnail: thumbElvanReq },
+      { id: "FOgFs1zuV54", title: "Muharrem Öztürk — YAK", thumbnail: thumbYak },
+      { id: "7nGlF7Lyt7g", title: "Umut Baysal — Nefessiz", thumbnail: thumbNefessiz },
+      { id: "_6Tg2krUa7Q", title: "Umut Baysal — Aşk Bulur Bizi", thumbnail: thumbAskBulur },
+      { id: "5dhY_84SxFY", title: "Muharrem Öztürk — Unutuverdim | 4K", thumbnail: thumbUnutuverdim },
+      { id: "MUhMZxG_GPo", title: "DİDOR | 4K", thumbnail: thumbDidor },
+      { id: "xnRAzZQNQPk", title: "Selvi — Yolculuk Çok Güzeldi", thumbnail: thumbSelvi },
+      { id: "FJKpf7w8wZ0", title: "The Guv — Door ft. Leyna Robinson-Stone", thumbnail: thumbGuvDoor },
+      { id: "7XalBuANHAM", title: "Büşra Aydoğdu — Kıyamadım | 4K", thumbnail: thumbBusra },
+      { id: "hmS4RZ9hnwA", title: "Emre Manzel — Bitmez Keder | 4K", thumbnail: thumbEmre },
+      { id: "RH7hK_e0RCo", title: "Burcu Arı & Genco Arı — Küçüğüm | 4K", thumbnail: thumbBurcu },
+      { id: "utBCXAEIqUo", title: "Çiğdem Aslan — Music Video | 4K", thumbnail: thumbCigdem },
+      { id: "diJZgOuRybY", title: "Mehmet Uslu — Music Video", thumbnail: thumbMehmet },
+      { id: "ZjbapVRWjbU", title: "ANLASANA — Music Video", thumbnail: thumbAnlasana },
     ],
   },
   {
-    title: "Fashion",
-    playlistUrl: "https://www.youtube.com/@pozimedia",
+    title: "Directing Portfolio",
+    playlistUrl: "https://www.youtube.com/playlist?list=PLz1K9EWvxzeti0QV0qm46-IrcXZMAjKOU",
     videos: [
-      { id: "dQw4w9WgXcQ", title: "London Fashion Week" },
-      { id: "dQw4w9WgXcQ", title: "Fashion Film 2" },
-      { id: "dQw4w9WgXcQ", title: "Fashion Film 3" },
-      { id: "dQw4w9WgXcQ", title: "Fashion Film 4" },
-      { id: "dQw4w9WgXcQ", title: "Fashion Film 5" },
-      { id: "dQw4w9WgXcQ", title: "Fashion Film 6" },
-      { id: "dQw4w9WgXcQ", title: "Fashion Film 7" },
-      { id: "dQw4w9WgXcQ", title: "Fashion Film 8" },
-      { id: "dQw4w9WgXcQ", title: "Fashion Film 9" },
-      { id: "dQw4w9WgXcQ", title: "Fashion Film 10" },
-    ],
-  },
-  {
-    title: "Documentary",
-    playlistUrl: "https://www.youtube.com/@pozimedia",
-    videos: [
-      { id: "dQw4w9WgXcQ", title: "Amazon Documentary" },
-      { id: "dQw4w9WgXcQ", title: "Sustainable Living" },
-      { id: "dQw4w9WgXcQ", title: "Documentary 3" },
-      { id: "dQw4w9WgXcQ", title: "Documentary 4" },
-      { id: "dQw4w9WgXcQ", title: "Documentary 5" },
-      { id: "dQw4w9WgXcQ", title: "Documentary 6" },
-      { id: "dQw4w9WgXcQ", title: "Documentary 7" },
-      { id: "dQw4w9WgXcQ", title: "Documentary 8" },
-      { id: "dQw4w9WgXcQ", title: "Documentary 9" },
-      { id: "dQw4w9WgXcQ", title: "Documentary 10" },
-    ],
-  },
-  {
-    title: "Multicam Events",
-    playlistUrl: "https://www.youtube.com/@pozimedia",
-    videos: [
-      { id: "dQw4w9WgXcQ", title: "Concert 1" },
-      { id: "dQw4w9WgXcQ", title: "Live Event 2" },
-      { id: "dQw4w9WgXcQ", title: "Conference 3" },
-      { id: "dQw4w9WgXcQ", title: "Gala Event 4" },
-      { id: "dQw4w9WgXcQ", title: "Event 5" },
-      { id: "dQw4w9WgXcQ", title: "Event 6" },
-      { id: "dQw4w9WgXcQ", title: "Event 7" },
-      { id: "dQw4w9WgXcQ", title: "Event 8" },
-      { id: "dQw4w9WgXcQ", title: "Event 9" },
-      { id: "dQw4w9WgXcQ", title: "Event 10" },
-    ],
-  },
-  {
-    title: "Food & Travel",
-    playlistUrl: "https://www.youtube.com/@pozimedia",
-    videos: [
-      { id: "dQw4w9WgXcQ", title: "Gourmet London" },
-      { id: "dQw4w9WgXcQ", title: "Travel Series 1" },
-      { id: "dQw4w9WgXcQ", title: "Food Program 2" },
-      { id: "dQw4w9WgXcQ", title: "Travel Film 3" },
-      { id: "dQw4w9WgXcQ", title: "Food Film 4" },
-      { id: "dQw4w9WgXcQ", title: "Travel Film 5" },
-      { id: "dQw4w9WgXcQ", title: "Food Film 6" },
-      { id: "dQw4w9WgXcQ", title: "Travel Film 7" },
-      { id: "dQw4w9WgXcQ", title: "Food Film 8" },
-      { id: "dQw4w9WgXcQ", title: "Travel Film 9" },
+      { id: "mcWADr2xZAs", title: "Fatih Aygün — Eylül" },
+      { id: "hktJFPhl_Qo", title: "İlker Özdemir — Ayrılınca" },
+      { id: "e-H2scl_2VM", title: "Ecem Uzgör — Geldin Sözüme" },
+      { id: "Ilq2XKGmCVU", title: "Elvan Kızılay — Less Is More" },
+      { id: "KsfKpwrCZgM", title: "Büşra Aydoğdu — Kıyamadım" },
+      { id: "9MSDG8y8Urk", title: "Muharrem Öztürk — Yak" },
+      { id: "JK43ug0KKQU", title: "Süleyman Nişancı — Şahbaz" },
+      { id: "9BI5fx2mUqw", title: "Emre Manzel — Bitmez Keder" },
+      { id: "ku9jFHw7re8", title: "Elvan Kızılay — Requiem for Istanbul" },
+      { id: "708eqkqYCnM", title: "Burcu Arı ft. Genco Arı — Küçüğüm" },
+      { id: "U3Ee0sKxKtc", title: "Burcu Arı & Genco Arı — Saf Aşk" },
+      { id: "VFTRTp1ENbA", title: "Muharrem Öztürk — Unutuverdim" },
+      { id: "fbJUr48sIkc", title: "Ercan & Gökhan Çağıran — Rüzgar Değirmenleri" },
+      { id: "fZdCyRP5oXU", title: "%100 Music — Kalben YouTube Lansman Partisi" },
+      { id: "xIUJb_6N5j8", title: "%100 Lookbook — Serra Kaya" },
+      { id: "Rk3ifmJQ7VU", title: "Çiğdem Aslan — Sabah Güneşi" },
     ],
   },
 ];

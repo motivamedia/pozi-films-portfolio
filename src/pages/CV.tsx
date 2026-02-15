@@ -162,8 +162,8 @@ const CV = () => {
                 <a href="https://pozi.media" target="_blank" rel="noopener noreferrer" className="block text-sm md:text-base font-light text-foreground hover:text-muted-foreground transition-colors">
                   pozi.media
                 </a>
-                <a href="https://vimeo.com/pozivisualart" target="_blank" rel="noopener noreferrer" className="block text-sm md:text-base font-light text-foreground hover:text-muted-foreground transition-colors">
-                  vimeo.com/pozivisualart
+                <a href="https://vimeo.com/pozimedia" target="_blank" rel="noopener noreferrer" className="block text-sm md:text-base font-light text-foreground hover:text-muted-foreground transition-colors">
+                  vimeo.com/pozimedia
                 </a>
                 <a href="https://youtu.be/IMg8yDnJgBs" target="_blank" rel="noopener noreferrer" className="block text-sm md:text-base font-light text-foreground hover:text-muted-foreground transition-colors">
                   Video Showreel

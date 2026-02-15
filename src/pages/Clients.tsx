@@ -125,11 +125,11 @@ const Clients = () => {
                 transition={{ duration: 0.3, delay: i * 0.03 }}
                 className="flex flex-col items-center justify-center gap-3 py-6 px-3 rounded-sm border border-transparent hover:border-border transition-all duration-300"
               >
-                <div className="h-10 flex items-center justify-center">
+                <div className="h-12 w-full flex items-center justify-center">
                   <img
                     src={brand.logo}
                     alt={brand.name}
-                    className={`${brand.size || "h-8"} w-auto object-contain ${brand.invert ? "invert" : ""}`}
+                    className={`max-h-10 max-w-[110px] w-auto h-auto object-contain ${brand.invert ? "invert" : ""}`}
                   />
                 </div>
                 <span className="text-[10px] uppercase tracking-[0.1em] font-light text-muted-foreground/60 text-center">
