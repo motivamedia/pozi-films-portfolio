@@ -22,6 +22,20 @@ import thumbCigdem from "@/assets/thumbnails/Cigdem_Aslan_Music_Video.jpg";
 import thumbMehmet from "@/assets/thumbnails/Mehmet_Uslu_Music_Video.jpg";
 import thumbAnlasana from "@/assets/thumbnails/Anlasana.jpg";
 
+// Commercial thumbnails
+import thumbCaglaNutraxin from "@/assets/thumbnails/Cagla_Sikel_Nutraxin_Collagen.jpg";
+import thumbLondonAktuel from "@/assets/thumbnails/London_Aktuel_TV_Teaser.jpg";
+import thumbTGRSocks from "@/assets/thumbnails/TGR_Socks_London.jpg";
+import thumbBonmonkee from "@/assets/thumbnails/Bonmonkee_Dog_Rain_Cover.jpg";
+import thumbKaracaOscar from "@/assets/thumbnails/Karaca_Oscar_Wolfgang_Puck.jpg";
+import thumbBarrus1 from "@/assets/thumbnails/Barrus_2025_1.jpg";
+import thumbEnisOrzax from "@/assets/thumbnails/Enis_Arikan_Orzax_Collagen.jpg";
+import thumbEnisAkar from "@/assets/thumbnails/Enis_Arikan_Akar_Sprey.jpg";
+import thumbBarrus2 from "@/assets/thumbnails/Barrus_2025_2.jpg";
+import thumbBioxcinBTS from "@/assets/thumbnails/Bioxcin_Micellar_BTS.jpg";
+import thumbKaracaCannes from "@/assets/thumbnails/Karaca_Cannes_Film_Festival.jpg";
+import thumbBioxcinSera from "@/assets/thumbnails/Bioxcin_Sera_Tokdemir.jpg";
+
 interface VideoItem {
   id: string;
   title: string;
@@ -37,18 +51,20 @@ interface PortfolioCategoryData {
 const portfolioData: PortfolioCategoryData[] = [
   {
     title: "Commercial",
-    playlistUrl: "https://www.youtube.com/@pozimedia",
+    playlistUrl: "https://www.youtube.com/playlist?list=PLlWLRj4G9HmgwCQ89rdjd8XV2HjB5NZ5p",
     videos: [
-      { id: "dQw4w9WgXcQ", title: "Turkcell Campaign" },
-      { id: "dQw4w9WgXcQ", title: "Samsung Promo" },
-      { id: "dQw4w9WgXcQ", title: "Salesforce Brand Film" },
-      { id: "dQw4w9WgXcQ", title: "Meta Campaign" },
-      { id: "dQw4w9WgXcQ", title: "Karaca Commercial" },
-      { id: "dQw4w9WgXcQ", title: "Nutraxin Ad" },
-      { id: "dQw4w9WgXcQ", title: "Bioxin Spot" },
-      { id: "dQw4w9WgXcQ", title: "Jeton Wallet" },
-      { id: "dQw4w9WgXcQ", title: "Cliniqua" },
-      { id: "dQw4w9WgXcQ", title: "GNC Campaign" },
+      { id: "-Edd04FD75Q", title: "Cagla Sikel — Nutraxin Collagen", thumbnail: thumbCaglaNutraxin },
+      { id: "S0YpE6h4d8A", title: "London Aktuel TV Program Teaser", thumbnail: thumbLondonAktuel },
+      { id: "GDSrTlsrepg", title: "TGR Socks — London", thumbnail: thumbTGRSocks },
+      { id: "IUXXsV4E9Vk", title: "Bonmonkee — Dog Rain Cover", thumbnail: thumbBonmonkee },
+      { id: "mv-mNEnh4rU", title: "Karaca Oscar — Wolfgang Puck", thumbnail: thumbKaracaOscar },
+      { id: "1HdWWpdzifA", title: "Barrus 2025 | 1", thumbnail: thumbBarrus1 },
+      { id: "z9GKvS7mCHc", title: "Enis Arıkan — Orzax Collagen", thumbnail: thumbEnisOrzax },
+      { id: "zQ8zgI4e8bQ", title: "Enis Arıkan — Akar Sprey", thumbnail: thumbEnisAkar },
+      { id: "XsB4gbj7j58", title: "Barrus 2025 | 2", thumbnail: thumbBarrus2 },
+      { id: "atT4WrkGvcQ", title: "Bioxcin Micellar — BTS", thumbnail: thumbBioxcinBTS },
+      { id: "isoXjVrqZ9k", title: "Karaca — Cannes Film Festival", thumbnail: thumbKaracaCannes },
+      { id: "m8Ww36XSSkc", title: "Bioxcin — Sera Tokdemir", thumbnail: thumbBioxcinSera },
     ],
   },
   {
